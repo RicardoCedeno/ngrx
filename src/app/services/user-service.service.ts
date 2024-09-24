@@ -26,5 +26,22 @@ export class UserServiceService {
     console.log(isAdmin)
   }
 
+  updateUserAdminStatus(isAdmin: boolean){
+    patchState(this.initialUserState, {isAdmin})
+    console.log(this.initialUserState())
+  }
+
+  updateUser(newUser: user){
+    patchState(this.initialUserState, (state)=>({
+      user:{...state.user, username: newUser.username}
+    }))
+    console.log(this.initialUserState())
+  }
+
+  updateUserAndAdminStatus(newUser: user, isAdmin: boolean){
+    patchState(this.initialUserState, {isAdmin}, (state) =>({user: {...state.user, username: newUser.username}}))
+    console.log(this.initialUserState())
+  }
+
 
 }

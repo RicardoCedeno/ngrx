@@ -15,14 +15,13 @@ import { UserServiceService } from './services/user-service.service';
 export class AppComponent {
   title = 'signals-asyncawait-promises';
  
-   userState = signalState<userState>({
-    user:{username: 'cic', password:'123'},
-    isAdmin: true 
-  });
 
   userService = inject(UserServiceService)
 
   ngOnInit(){
     this.userService.getUserState();
+    this.userService.updateUserAdminStatus(true);
+    this.userService.updateUser({username: 'cic2', password:'123456'})
+    this.userService.updateUserAndAdminStatus({username: 'cic3', password:'123456'}, false)
   }
 }
